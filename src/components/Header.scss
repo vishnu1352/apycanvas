@@ -1,0 +1,13 @@
+@import '../styles/variables.scss';
+
+.headerdiv{
+    background-color: $primary;
+    box-shadow: 0px 9px 15px 0px rgba(0,0,0,0.1);
+    p{
+        color:$textcolor;
+        font-weight:bold;
+    }
+    .menuicon{
+        float:right;
+    }
+}

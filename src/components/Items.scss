@@ -1,0 +1,62 @@
+@import '../styles/variables.scss';
+
+
+.itemsdiv{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap:20px;
+    width:95%;
+    margin:auto;
+
+    .itemcontainer{
+        border:1px solid rgb(211, 211, 211);
+        border-radius:10px     ;
+        -webkit-border-radius:10px    ;
+        -moz-border-radius:10px    ;
+        -ms-border-radius:10px    ;
+        -o-border-radius:10px    ;
+        -webkit-box-shadow: 0px 0px 9px 1px rgba(0,0,0,0.35);
+-moz-box-shadow: 0px 0px 9px 1px rgba(0,0,0,0.35);
+box-shadow: 0px 0px 9px 1px rgba(0,0,0,0.35);
+}
+    .image{
+        width:100%;
+        border-radius: 10px 10px 0px 0px;
+        -webkit-border-radius: 10px 10px 0px 0px;
+        -moz-border-radius: 10px 10px 0px 0px;
+        -ms-border-radius: 10px 10px 0px 0px;
+        -o-border-radius: 10px 10px 0px 0px;
+}
+.price{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:$primary;
+    font-weight: bold;
+    gap:5px;
+
+}
+
+}
+.letter-selected{
+    background-color: $primary;
+    color:$textcolor;
+    padding:6px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    width:30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.disabled{
+    border:1px solid $primary;
+    padding:6px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    width:30px;
+}
