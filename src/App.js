@@ -1,14 +1,14 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Items from "./components/Items";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from "./AppRoutes";
 
 function App() {
- 
   return (
     <>
-      
-      <Items />
-      
+    <BrowserRouter>
+      <AppRoutes />
+      </BrowserRouter>
     </>
   );
 }

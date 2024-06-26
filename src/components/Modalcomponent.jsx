@@ -5,9 +5,7 @@ const Modalcomponent = ({show,onHide,classname,children}) => {
   return (
     <Modal backdrop="static"
     keyboard={false} show={show} onHide={onHide} className={classname}>
-        <Modal.Header closeButton>
-          
-        </Modal.Header>
+       
         <Modal.Body>{children}</Modal.Body>
       
     </Modal>
