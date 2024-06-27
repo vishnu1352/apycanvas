@@ -11,3 +11,27 @@
         float:right;
     }
 }
+
+.btn-primary{
+    background-color: $primary;
+    border:0px;
+    color:$secondary;
+
+    
+}
+.btn-primary:hover{
+    background-color: $secondary;
+border:0px;
+color:$primary;
+}
+
+.btn-secondary{
+    background-color: $secondary;
+    border:0px;
+    color:$primary;
+}
+.btn-secondary:hover{
+    background-color: $primary;
+    border:0px;
+    color:$secondary;
+}

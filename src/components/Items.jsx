@@ -8,8 +8,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { Button } from "react-bootstrap";
 import { ItemsFromApi } from "../utils/ItemsFromApi";
 import "./Items.scss";
+import { APPTITLE } from "../utils/URL";
+import { useNavigate } from "react-router-dom";
 
 const Items = () => {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [itemForModal, setItemForModal] = useState(null);
   const [showFilterModal, setShowFilterModal] = useState(false);
@@ -110,6 +113,7 @@ const Items = () => {
   return (
     <>
       <Header>
+      <p className="m-0 p-3 text-center fs-18" onDoubleClick={()=>navigate("/login")}>{APPTITLE}</p>
         <p
           className="menuicon m-0 p-3"
           onClick={toggleFilterModal}
@@ -130,7 +134,7 @@ const Items = () => {
               <div>
                 <img src={item.imageUrl} alt="keychain" className="image" />
               </div>
-              <div className="mt-2 fs-10 fw-500 px-3">{item.itemName}</div>
+              <div className="mt-2 fs-12 fw-500 px-3">{item.itemName}</div>
               <div className="px-3 d-flex justify-content-between align-items-end mb-2">
                 <div>
                   

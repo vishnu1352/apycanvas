@@ -10,11 +10,12 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import sendRequestFunc from "../../utils/sendRequestFunc";
 import { Button } from "react-bootstrap";
-import { BASEURL } from "../../utils/URL";
+import { APPTITLE, BASEURL } from "../../utils/URL";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
-import './AddInventory.scss';
+import "./AddInventory.scss";
 import { IoMdMenu } from "react-icons/io";
+import Header from "../Header";
 const AddInventory = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -27,13 +28,13 @@ const AddInventory = () => {
   });
   const [typesDropdown, setTypesDropdown] = useState([]);
   const isTransparentOptions = [
-    {value:'--',label:'--'},
+    { value: "--", label: "--" },
     { value: true, label: "Yes" },
     { value: false, label: "No" },
   ];
 
   const getItemTypes = async () => {
-    const options = [{value:'--',label:'--'}];
+    const options = [{ value: "--", label: "--" }];
     const response = await sendRequestFunc(`${BASEURL}/getItemTypes`, "GET");
     if (response) setLoading(false);
     await response.forEach((type) =>
@@ -60,24 +61,21 @@ const AddInventory = () => {
       setLoading(false);
       toast.success("Item added successfully...");
       setItem({
-        imageUrl: '',
+        imageUrl: "",
         itemName: "",
         type: "",
         price: "",
-        description:'',
+        description: "",
       });
     } else {
       setLoading(false);
       toast.error(response.message);
-      
     }
   };
 
   useEffect(() => {
     getItemTypes();
   }, []);
-
-  
 
   return (
     <>
@@ -95,31 +93,38 @@ const AddInventory = () => {
         </Modal>
       )}
       {/* price,letter,isTransparent,type */}
-      <div className="container p-3 fs-14 addinventory">
-        <div className="d-flex justify-content-between fs-12">
-          <Button onClick={() => navigate('/')} className="fs-12">
-            <MdOutlineKeyboardBackspace />
-          </Button>
+      <Header>
+        <p
+          className="m-0 p-3 text-center fs-18"
+          onDoubleClick={() => navigate("/")}
+        >
+          {APPTITLE}
+        </p>
 
-          <div className="fs-12">
-            <Dropdown className="options-dropdown">
-              <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                <IoMdMenu />  
-              </Dropdown.Toggle>
+        <div className="fs-12">
+          <Dropdown className="options-dropdown">
+            <Dropdown.Toggle variant="primary" id="dropdown-basic">
+              <IoMdMenu />
+            </Dropdown.Toggle>
 
-              <Dropdown.Menu>
-                <Dropdown.Item
-                  onClick={() => navigate("/viewinventory")}
-                  className="fs-12"
-                >
-                  View Inventory
-                </Dropdown.Item>
-                <Dropdown.Item className="fs-12" onClick={() => navigate("/myorders")}>My Orders</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
+            <Dropdown.Menu>
+              <Dropdown.Item
+                onClick={() => navigate("/viewinventory")}
+                className="fs-12"
+              >
+                View Inventory
+              </Dropdown.Item>
+              <Dropdown.Item
+                className="fs-12"
+                onClick={() => navigate("/myorders")}
+              >
+                My Orders
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
-
+      </Header>
+      <div className="container p-3 fs-14 addinventory">
         <Card className="shadow mt-3 p-3">
           <h4 className="text-center">Add Items</h4>
           <div>
@@ -170,13 +175,13 @@ const AddInventory = () => {
               <Form.Group className="mb-3 col-lg-6" controlId="formBasicEmail">
                 <Form.Label>Item Description</Form.Label>
                 <Form.Control
-                  as="textarea" rows={3} 
+                  as="textarea"
+                  rows={3}
                   name="description"
-                  onChange={handleInput}            
+                  onChange={handleInput}
                   value={item.description}
                 />
               </Form.Group>
-
             </Row>
             <Button className="col-lg-6 w-100" onClick={addItemToDb}>
               Submit
