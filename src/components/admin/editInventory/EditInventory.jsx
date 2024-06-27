@@ -118,15 +118,7 @@ const EditInventory = () => {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label>
-                  Is Transparent({item.isTransparent.toString()})
-                </Form.Label>
-                <Select
-                  options={isTransparentOptions}
-                  onChange={handleIsTransparentDropdown}
-                />
-              </Form.Group>
+             
 
               <Form.Group className="mb-3">
                 <Form.Label>Type ({item.type})</Form.Label>

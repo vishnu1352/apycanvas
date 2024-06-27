@@ -1,7 +1,7 @@
 @import '../styles/variables.scss';
 
 .headerdiv{
-    background-color: $primary;
+    background: linear-gradient(to right, $primary , $secondary);
     box-shadow: 0px 9px 15px 0px rgba(0,0,0,0.1);
     p{
         color:$textcolor;
@@ -15,23 +15,23 @@
 .btn-primary{
     background-color: $primary;
     border:0px;
-    color:$secondary;
+    color:$textcolor;
 
     
 }
 .btn-primary:hover{
     background-color: $secondary;
 border:0px;
-color:$primary;
+color:$secondarytext;
 }
 
 .btn-secondary{
     background-color: $secondary;
     border:0px;
-    color:$primary;
+    color:$secondarytext;
 }
 .btn-secondary:hover{
     background-color: $primary;
     border:0px;
-    color:$secondary;
+    color:$textcolor;;
 }
