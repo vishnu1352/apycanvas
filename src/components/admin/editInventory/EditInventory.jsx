@@ -8,40 +8,33 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import sendRequestFunc from "../../../utils/sendRequestFunc";
 import { BASEURL } from "../../../utils/URL";
+import { Badge } from "react-bootstrap";
 
 const EditInventory = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
+
   const [item, setItem] = useState({
     price: 0,
-    letter: "",
+    itemName: "",
     imageUrl: "",
-    isTransparent: "",
+    description: "",
     type: "",
   });
 
   const [typesDropdown, setTypesDropdown] = useState([]);
-  const isTransparentOptions = [
-    { value: true, label: "Yes" },
-    { value: false, label: "No" },
-  ];
 
   const handleInput = (e) => {
     setItem({ ...item, [e.target.name]: e.target.value });
   };
 
-  const handleIsTransparentDropdown = (e) => {
-    setItem({ ...item, isTransparent: e.value });
-  };
   const handleTypeDropdown = (e) => {
     setItem({ ...item, type: e.value });
   };
 
   const getItemTypes = async () => {
-    const options = [];
+    const options = [{ value: "--", label: "--" }];
     const response = await sendRequestFunc(`${BASEURL}/getItemTypes`, "GET");
-    if (response) setLoading(false);
     await response.forEach((type) =>
       options.push({ value: type.type, label: type.type })
     );
@@ -49,7 +42,7 @@ const EditInventory = () => {
   };
 
   const getItemById = async (id) => {
-    toast.info("Please Wait...Fetching")
+    toast.info("Please Wait...Fetching");
     const response = await sendRequestFunc(
       `${BASEURL}/getSingleItem/${id}`,
       "GET"
@@ -59,15 +52,16 @@ const EditInventory = () => {
     }
   };
   const updateItem = async () => {
-    toast.info("Updating....")
     const response = await sendRequestFunc(
       `${BASEURL}/editItem/${state.id}`,
       "POST",
       item
     );
     if (response.statusCode === 200) {
-      toast.success("Update Success !")
+      toast.success("Update Success !");
       navigate("/viewinventory");
+    }else{
+      toast.error('Oh Oh ! '+response.message)
     }
   };
   useEffect(() => {
@@ -77,18 +71,20 @@ const EditInventory = () => {
   }, []);
   return (
     <>
-    <ToastContainer position="top-right" autoClose={2000}/>
-      <Card className="p-3 m-3 ">
+      <button onClick={() => console.log(item)}>Click</button>
+      <ToastContainer position="top-right" autoClose={1000} />
+      <Card className="p-3 m-3 shadow">
         <Card.Img
           variant="top"
           src={item.imageUrl}
-          style={{ width: "200px" }}
+          style={{ width: "100px" }}
+          className="shadow mx-3"
         />
         <Card.Body>
           <Card.Text>
             <Form>
               <Form.Group className="mb-3">
-                <Form.Label>Image URl</Form.Label>
+                <Form.Label className="fw-bold">Image URl</Form.Label>
                 <Form.Control
                   as="textarea"
                   name="imageUrl"
@@ -99,7 +95,28 @@ const EditInventory = () => {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Price</Form.Label>
+                <Form.Label className="fw-bold">Item Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="letter"
+                  onChange={handleInput}
+                  value={item.itemName}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label className="fw-bold">Item Description</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  name="description"
+                  onChange={handleInput}
+                  value={item.description}
+                  rows={3}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label className="fw-bold">Price</Form.Label>
                 <Form.Control
                   type="number"
                   name="price"
@@ -109,19 +126,12 @@ const EditInventory = () => {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Letter</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="letter"
-                  onChange={handleInput}
-                  value={item.letter}
-                />
-              </Form.Group>
-
-             
-
-              <Form.Group className="mb-3">
-                <Form.Label>Type ({item.type})</Form.Label>
+                <Form.Label className="fw-bold">
+                  Type{" "}
+                  <Badge bg="warning" text="dark">
+                    {item.type}
+                  </Badge>
+                </Form.Label>
 
                 <Select options={typesDropdown} onChange={handleTypeDropdown} />
               </Form.Group>

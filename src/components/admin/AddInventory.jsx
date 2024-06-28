@@ -103,8 +103,12 @@ const AddInventory = () => {
 
         <div className="fs-12">
           <Dropdown className="options-dropdown">
-            <Dropdown.Toggle variant="primary" id="dropdown-basic">
-              <IoMdMenu />
+            <Dropdown.Toggle
+              variant="primary"
+              id="dropdown-basic"
+              style={{ background: "none"}}
+            >
+              <IoMdMenu size={25}/>
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
