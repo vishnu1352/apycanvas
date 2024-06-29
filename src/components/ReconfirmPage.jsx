@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./ReconfirmPage.scss";
 import { Button } from "react-bootstrap";
 import sendRequestFunc from "../utils/sendRequestFunc";
-import { BASEURL } from "../utils/URL";
+import { BASEURL, WHATSAPPREDIRECTPHONENUMBER } from "../utils/URL";
 
 const ReconfirmPage = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const ReconfirmPage = () => {
       toast.success(response.message + "Please wait you will be redirected to Whatsapp");
      
       let redirecturl =
-        "https://api.whatsapp.com/send?phone=9989205550&text=%0aID : " +
+        "https://api.whatsapp.com/send?phone="+WHATSAPPREDIRECTPHONENUMBER+"&text=%0aID : " +
         data.itemId +
         "%0a Item Name : " +
         data.itemName+

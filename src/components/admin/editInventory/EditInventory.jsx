@@ -60,8 +60,8 @@ const EditInventory = () => {
     if (response.statusCode === 200) {
       toast.success("Update Success !");
       navigate("/viewinventory");
-    }else{
-      toast.error('Oh Oh ! '+response.message)
+    } else {
+      toast.error("Oh Oh ! " + response.message);
     }
   };
   useEffect(() => {
@@ -71,7 +71,6 @@ const EditInventory = () => {
   }, []);
   return (
     <>
-      <button onClick={() => console.log(item)}>Click</button>
       <ToastContainer position="top-right" autoClose={1000} />
       <Card className="p-3 m-3 shadow">
         <Card.Img

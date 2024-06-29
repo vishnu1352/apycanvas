@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import sendRequestFunc from "../../../utils/sendRequestFunc";
 import { BASEURL } from "../../../utils/URL";
 import { useNavigate } from "react-router-dom";
@@ -24,8 +24,8 @@ const MyOrders = () => {
     const response = await sendRequestFunc(`${BASEURL}/getAllOrders`, "GET");
     console.log(response);
     if (response.statusCode === 200) {
-       totalAmountRef.current = response.totalAmount;
-      setOrderData(response.orders.reverse()); 
+      totalAmountRef.current = response.totalAmount;
+      setOrderData(response.orders.reverse());
     }
   };
   const viewOrder = (myOrder) => {
@@ -78,7 +78,7 @@ const MyOrders = () => {
           </Button>
 
           <Badge bg="warning" text="dark">
-          Total Amount : {totalAmountRef.current}
+            Total Amount : {totalAmountRef.current}
           </Badge>
 
           <Dropdown className="fs-12">
@@ -154,23 +154,16 @@ const MyOrders = () => {
               <>
                 <div className="d-flex gap-3 fs-14 px-3 mt-2">
                   <div>
-                    <b>Sno : </b>
+                    <b>Item Id : </b>
                   </div>
-                  <div>{updateStatus.sno}</div>
+                  <div>{updateStatus.itemId}</div>
                 </div>
 
                 <div className="d-flex gap-3 fs-14 px-3 mt-2">
                   <div>
-                    <b>Name On Item : </b>
+                    <b>Item Name : </b>
                   </div>
-                  <div>{updateStatus.customizedName}</div>
-                </div>
-
-                <div className="d-flex gap-3 fs-14 px-3 mt-2">
-                  <div>
-                    <b>Selected Color : </b>
-                  </div>
-                  <div>{updateStatus.selectedColor}</div>
+                  <div>{updateStatus.itemName}</div>
                 </div>
 
                 <div className="d-flex gap-3 fs-14 px-3 mt-2">
