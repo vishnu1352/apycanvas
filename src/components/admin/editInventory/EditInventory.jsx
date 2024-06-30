@@ -97,7 +97,7 @@ const EditInventory = () => {
                 <Form.Label className="fw-bold">Item Name</Form.Label>
                 <Form.Control
                   type="text"
-                  name="letter"
+                  name="itemName"
                   onChange={handleInput}
                   value={item.itemName}
                 />
