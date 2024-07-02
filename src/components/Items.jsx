@@ -11,7 +11,7 @@ import "./Items.scss";
 import { APPTITLE } from "../utils/URL";
 import { useNavigate } from "react-router-dom";
 
-const Items = () => {
+const Items = ({ itemType }) => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [itemForModal, setItemForModal] = useState(null);
@@ -47,7 +47,7 @@ const Items = () => {
   const getAllItems = async () => {
     const myPromise = new Promise(async (resolve, reject) => {
       try {
-        const response = await ItemsFromApi();
+        const response = await ItemsFromApi(itemType);
         if (response) {
           setOriginalItemsList(response.reverse());
 

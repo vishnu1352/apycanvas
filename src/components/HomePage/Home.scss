@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.homepage{
+    .navbar{
+        background:linear-gradient(to left, $primary, $secondary);
+        color:$textcolor !important;
+        .navbar-brand{
+            color:$textcolor;
+        }
+    }
+
+    .cardbadge{
+        background:linear-gradient(to left, $primary, $secondary);
+        color:$textcolor !important;
+    }
+    
+}

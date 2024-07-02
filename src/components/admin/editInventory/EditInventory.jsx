@@ -35,7 +35,7 @@ const EditInventory = () => {
   const getItemTypes = async () => {
     const options = [{ value: "--", label: "--" }];
     const response = await sendRequestFunc(`${BASEURL}/getItemTypes`, "GET");
-    await response.forEach((type) =>
+    await response.types.forEach((type) =>
       options.push({ value: type.type, label: type.type })
     );
     setTypesDropdown(options);
